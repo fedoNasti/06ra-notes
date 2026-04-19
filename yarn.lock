@@ -1382,6 +1382,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+uuid@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-14.0.0.tgz#0af883220163d264ffe0c084f6b8a89b9666966d"
+  integrity sha512-Qo+uWgilfSmAhXCMav1uYFynlQO7fMFiMVZsQqZRMIXp0O7rR7qjkj+cPvBHLgBqi960QCoo/PH2/6ZtVqKvrg==
+
 vite@^8.0.4:
   version "8.0.8"
   resolved "https://registry.yarnpkg.com/vite/-/vite-8.0.8.tgz#4e26a9bba77c4b27a00b6b10100a7dab48d546a3"
