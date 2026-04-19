@@ -1,7 +1,7 @@
 interface NotesCardProps {
-  id: number;
+  id: string;
   content: string;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
 }
 
 const NotesCard = ({ id, content, onDelete }: NotesCardProps) => {
@@ -12,7 +12,6 @@ const NotesCard = ({ id, content, onDelete }: NotesCardProps) => {
       <div className="notes-list__content">{content}</div>
     </>
   )
-
 }
 
 export default NotesCard;

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { MdRefresh } from 'react-icons/md';
 import NotesForm from './NotesForm';
 import NotesList from './NotesList';
 
 export interface Note {
-  id: number;
+  id: string;
   content: string;
 }
 
@@ -12,7 +13,6 @@ const Notes: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Загрузка заметок с сервера
   const fetchNotes = async () => {
   setLoading(true);
   setError(null);
@@ -29,7 +29,6 @@ const Notes: React.FC = () => {
   }
 };
 
-  // Добавление новой заметки
   const addNote = async (content: string) => {
     if (!content.trim()) return;
 
@@ -42,8 +41,7 @@ const Notes: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          id: 0,         
+        body: JSON.stringify({      
           content: content,
         }),
       });
@@ -61,8 +59,7 @@ const Notes: React.FC = () => {
     }
   };
 
-  // Удаление заметки по id
-  const deleteNote = async (id: number) => {
+  const deleteNote = async (id: string) => {
   setLoading(true);
   setError(null);
   try {
@@ -78,20 +75,22 @@ const Notes: React.FC = () => {
   }
 };
 
-  // Первоначальная загрузка при монтировании
   useEffect(() => {
     fetchNotes();
   }, []);
 
   return (
-    <div>
+    <div className='notes'>
       <div className='notes-header'>
-        <h1>Заметки</h1>
-        <button onClick={fetchNotes}>Обновить</button> {/* зелёные стрелочки */}
+        <h1 className='notes-header__title'>Notes</h1>
+        <button className='notes-header__btn' onClick={fetchNotes}>
+          <MdRefresh />
+        </button>
+
+        {loading && <div>Loading...</div>}
+        {error && <div style={{ color: 'red' }}>Ошибка: {error}</div>}
       </div>
       
-      {loading && <div>Загрузка...</div>}
-      {error && <div style={{ color: 'red' }}>Ошибка: {error}</div>}
       <NotesList notes={notes} onDelete={deleteNote} />
       <NotesForm onAdd={addNote} />
     </div>

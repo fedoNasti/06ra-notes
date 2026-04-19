@@ -3,7 +3,7 @@ import NotesCard from "./NotesCard";
 
 interface NotesListProps {
   notes: Note[];
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
 }
 
 const NotesList = ({ notes, onDelete }: NotesListProps) => {
@@ -21,8 +21,7 @@ const NotesList = ({ notes, onDelete }: NotesListProps) => {
         
       ))}
     </ul>
-  );
-  
+  ); 
 }
 
 export default NotesList;
